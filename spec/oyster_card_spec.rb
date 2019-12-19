@@ -14,7 +14,7 @@ describe Oystercard do
 
   it "dedcucts the minimum balance when touch_out" do
     subject.balance
-    subject.touch_out
+    subject.touch_out(station)
     expect(subject.balance).to eq -1
   end
 
@@ -33,9 +33,39 @@ describe Oystercard do
   it "sets entry_station to nil on touch_out" do
     subject.top_up(1)
     subject.touch_in(station)
-    subject.touch_out
+    subject.touch_out(station)
     expect(subject.entry_station).to eq nil
   end
+
+  it "stores the exit station on touch_out" do
+    subject.top_up(1)
+    subject.touch_in(station)
+    subject.touch_out(station)
+    expect(subject.exit_station).to eq station
+  end
+
+  it "journey_history empty @default" do
+    expect(subject.journey_history).to be_empty
+  end
+  it "one_journey empty @default" do
+    expect(subject.one_journey).to be nil
+  end
+
+
+  it "stores the journey history" do
+    subject.top_up(1)
+    subject.touch_in(station)
+    subject.touch_out(station)
+    expect(subject.journey_history).not_to be_empty
+  end
+
+  it "touch_in and touch_out creates one journey" do
+    subject.top_up(1)
+    subject.touch_in(station)
+    subject.touch_out(station)
+    expect(subject.journey_history).to include(subject.one_journey)
+  end
+
 
   describe '#balance' do
     it "has a balance of 0" do
@@ -68,7 +98,7 @@ describe Oystercard do
     it "changes in_journey status to false" do
       subject.top_up(1)
       subject.touch_in(station)
-      subject.touch_out
+      subject.touch_out(station)
       expect(subject).not_to be_in_journey
     end
   end
