@@ -25,8 +25,16 @@ describe Oystercard do
   end
 
   it "stores the entry station on touch_in" do
+    subject.top_up(1)
     subject.touch_in(station)
     expect(subject.entry_station).to eq station
+  end
+
+  it "sets entry_station to nil on touch_out" do
+    subject.top_up(1)
+    subject.touch_in(station)
+    subject.touch_out
+    expect(subject.entry_station).to eq nil
   end
 
   describe '#balance' do
