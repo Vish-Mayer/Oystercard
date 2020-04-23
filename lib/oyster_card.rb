@@ -24,7 +24,6 @@ class Oystercard
 
   def touch_in(station)
     raise 'Insufficient funds' if @balance < MINIMUM_VALUE
-
     multiple_touch_in
     @journey_log.start_log(station)
   end
@@ -37,7 +36,7 @@ class Oystercard
   private
 
   def multiple_touch_in
-    deduct(PENALTY_CHARGE) if journey_log.log_incomplete?
+    deduct(PENALTY_CHARGE) if journey_log.already_touched_in?
   end
 
   def over?(money)

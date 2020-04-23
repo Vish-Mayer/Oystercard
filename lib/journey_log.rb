@@ -29,7 +29,7 @@ class JourneyLog
     @journey_log << @journey.new_journey
   end
 
-  def log_incomplete?
+  def already_touched_in?
     unless @journey.new_journey[:touch_in].nil?
       log_journey
       new_journey

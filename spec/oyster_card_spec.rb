@@ -52,4 +52,12 @@ describe Oystercard do
       expect(oyster.balance).to eq 6
     end
   end
+
+  describe '#multiple_touch_out' do
+    it 'deducts penalty charge if touch out occurs when journey is complete ' do
+      oyster.top_up(10)
+      oyster.touch_out(station)
+      expect(oyster.balance).to eq 6
+    end
+  end
 end
