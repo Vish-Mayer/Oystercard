@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class Journey
   attr_reader :new_journey
 
   def initialize
-    @new_journey = {touch_in: nil, touch_out: nil}
+    @new_journey = { touch_in: nil, touch_out: nil }
   end
 
   def start_journey(station)

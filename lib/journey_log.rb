@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'journey'
 
 class JourneyLog
@@ -27,4 +29,10 @@ class JourneyLog
     @journey_log << @journey.new_journey
   end
 
+  def log_incomplete?
+    unless @journey.new_journey[:touch_in].nil?
+      log_journey
+      new_journey
+    end
+  end
 end
