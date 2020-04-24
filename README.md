@@ -60,7 +60,7 @@ $ rspec
 
 **JourneyLog**
 - Creates a new Journey instance.
-- Logs the taken journey.
+- Logs the journey that was taken.
 
 ## User Requirements
 
