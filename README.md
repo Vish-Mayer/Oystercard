@@ -22,7 +22,7 @@ ___
 
 Pairing challenge at Makers Academy to build a command line application that emulates the functionality of an oyster-card. This application was built using specific user requirements with Ruby and implements a TDD approach whilst covering multiple edge cases.
 
-A user is able to create a new oyster-card, and initiate stations with zones to travel between. Before a user can travel, they must top up their new oyster first. A user can then touch in and out of stations. When a journey is completed the user is charged accordingly by the zones they have travelled between and the journey is stored in a log for the user to view.  
+A user is able to create a new oyster-card, and initiate stations with zones to travel between. Before a user can travel, they must top up their new oyster. A user can then touch in and out of stations. When a journey is completed the user is charged accordingly by the zones they have travelled between and the journey is stored in a log for the user to view.  
 
 ## How to use
 
