@@ -3,13 +3,13 @@
 require 'journey_log'
 
 describe JourneyLog do
+  subject(:log) { described_class.new(journey_class) }
   let(:camden) { double(name: 'camden', zone: 1) }
   let(:euston) { double(name: 'euston', zone: 1) }
   let(:journey_instance) { double(start_journey: nil, end_journey: nil) }
   let(:journey_class) { double(new: journey_instance) }
   let(:completed_journey) { double(touch_in: camden, touch_out: euston) }
   let(:incomplete_journey) { double(touch_in: euston, touch_out: nil) }
-  subject(:log) { JourneyLog.new(journey_class) }
 
   describe '#initialize' do
     it ' is initialized with a journey class' do
@@ -66,7 +66,13 @@ describe JourneyLog do
     end
   end
 
-  describe '#log_incomplete' do
+  describe '#journeys' do
+    it 'is a clone of the new journey_log' do
+      expect(log.journeys).to eq log.journey_log
+    end
+  end
+
+  describe '#incomplete?' do
     it 'stores an incomplete_journey' do
       allow(journey_instance).to receive(:new_journey).and_return incomplete_journey
       log.start_log(camden)

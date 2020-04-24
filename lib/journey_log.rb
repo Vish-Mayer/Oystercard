@@ -29,7 +29,11 @@ class JourneyLog
     @journey_log << @journey.new_journey
   end
 
-  def already_touched_in?
+  def journeys
+    @journey_log.map(&:clone)
+  end
+
+  def incomplete?
     unless @journey.new_journey[:touch_in].nil?
       log_journey
       new_journey
